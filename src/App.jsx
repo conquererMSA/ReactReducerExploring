@@ -4,7 +4,6 @@ import { useState } from "react";
 import { initialTasks } from "./data";
 export default function App() {
   const [tasks, setTasks]=useState(initialTasks);
-  // const [isAdded, setIsAdded]=useState(false);
   //handlers
   const handleAddTask=(newTask)=>{
     const nextId=tasks[tasks.length-1].id+1;
@@ -13,15 +12,15 @@ export default function App() {
       id:nextId,
       done:false
      }]);
-    //  setIsAdded(true)
+  }
+  const handleDeleteTask=(taskId)=>{
+        setTasks(tasks.filter(task=>task.id!=taskId))
   }
   return ( 
   <div >
    <h1>Prague internity</h1>
-   <AddTask handleAddTask={handleAddTask} 
-  //  isAdded={isAdded}
-   />
-   <TaskList tasks={tasks}/>
+   <AddTask handleAddTask={handleAddTask}/>
+   <TaskList tasks={tasks} handleDeleteTask={handleDeleteTask}/>
   </div>
   
 )
